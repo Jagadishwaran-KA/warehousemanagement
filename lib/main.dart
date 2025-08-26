@@ -31,13 +31,17 @@ class MainApp extends StatelessWidget {
 
 class MainLayout extends StatelessWidget {
   final Widget child;
+  final Widget? floatingActionButton;
 
-  const MainLayout({super.key, required this.child});
+  const MainLayout({super.key, required this.child, this.floatingActionButton,});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.white, // This makes the back button white
+        ),
         title: Text('Inventra',
         style: GoogleFonts.urbanist(
         fontSize: 34,
@@ -78,6 +82,7 @@ class MainLayout extends StatelessWidget {
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
         ],
       ),
+      floatingActionButton: floatingActionButton,
     );
   }
 }

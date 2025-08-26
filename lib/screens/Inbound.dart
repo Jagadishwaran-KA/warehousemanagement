@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:warehousemanagement/main.dart';
 import 'package:warehousemanagement/models/InboundCard.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:warehousemanagement/screens/ReceiptDetails.dart';
-import 'dashboard.dart';
 
 class Inbound extends StatelessWidget {
   const Inbound({super.key});
@@ -10,19 +10,31 @@ class Inbound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 8,top: 8),
+      padding: EdgeInsets.only(left: 8,top: 8, right: 8),
       width: double.infinity,
       child: Column(
+        spacing: 6,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            textBaseline: TextBaseline.alphabetic,
+            spacing: 6,
             children: [
-              Text('Cheese Merchants Live'),
+              Text('Cheese Merchants Live',
+              style:
+                GoogleFonts.urbanist(color: Colors.white, fontSize: 20,fontWeight: FontWeight.w600),),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Work Date'),
-                  Text('23/08/25')
+                  Text('Work Date', style: GoogleFonts.urbanist(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white
+                  ),),
+                  Text('23/08/25',style: GoogleFonts.urbanist(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white)),
                 ],
               )
             ],
@@ -34,16 +46,20 @@ class Inbound extends StatelessWidget {
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Search Barcode or enter PO #',
+                    hintStyle: GoogleFonts.inter(color: Colors.white),
+                    prefixIcon: Icon(Icons.search, color: Colors.white,),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFFFFFFFF), width: 2),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFFD6ED6A), width: 2),)
                   ),
                 ),
               ),
-             IconButton(onPressed: null, icon: CircleAvatar(
-               backgroundColor: Colors.black,
-               child: Image.asset('images/filter.png', width: 25,height: 25,fit: BoxFit.contain,color: Colors.white,),
-             )),
             ],
           ),
-          Expanded(child: CardsView())
+          SizedBox(height: 12,),
+          Expanded(child: CardsView()),
         ],
       ),
     );
@@ -195,7 +211,6 @@ class CardsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      padding: const EdgeInsets.all(8),
       itemCount: dummydata.length,
       itemBuilder: (BuildContext context, int index) {
         return Dismissible(
@@ -207,21 +222,21 @@ class CardsView extends StatelessWidget {
             color: Colors.green,
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: const Icon(Icons.arrow_forward, color: Colors.white),
+            child: const Icon(Icons.arrow_forward, color: Colors.white,size: 26),
           ),
           secondaryBackground: Container(
-            color: Colors.blue,
+            color: Color(0xFFD6ED6A),
             alignment: Alignment.centerRight,
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: const Icon(Icons.arrow_back, color: Colors.white),
+            child: const Icon(Icons.arrow_back,size: 26,),
           ),
           child: GestureDetector(
             onTap: () => {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Receiptdetails())),
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MainLayout(child: Receiptdetails()))),
             },
             child: Container(
-              color: Colors.green,
               padding: EdgeInsets.all(10),
+              color: Color(0xFF303030),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -231,13 +246,15 @@ class CardsView extends StatelessWidget {
                       Text('PO # ${dummydata[index].orderNo}',
                       style: GoogleFonts.inter(
                         fontSize: 20,
-                        fontWeight: FontWeight.w600
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white
                       ),
                       ),
                       Text(dummydata[index].receiptNo,
                         style: GoogleFonts.inter(
                             fontSize: 18,
-                            fontWeight: FontWeight.bold
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white
                         ),
                       )
                     ],
@@ -249,13 +266,15 @@ class CardsView extends StatelessWidget {
                       Text('Date - ${dummydata[index].date}',
                         style: GoogleFonts.inter(
                             fontSize: 16,
-                          fontWeight: FontWeight.w600
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white
                         ),
                       ),
                       Text('LineNo - 10000',
                         style: GoogleFonts.inter(
                             fontSize: 16,
-                            fontWeight: FontWeight.w600
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white
                         ),
                       ),
                     ],
